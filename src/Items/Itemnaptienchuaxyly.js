@@ -25,10 +25,8 @@ const Itemnaptienchuaxyly = (props) => {
 
     }
     useEffect(() => {
-        console.log(val);
         var db = getDatabase(app);
         onValue(ref(db, `Users/${val.userId}`), (dataSnapshot) => {
-            console.log(dataSnapshot.val());
             setUser(dataSnapshot.val())
         })
 

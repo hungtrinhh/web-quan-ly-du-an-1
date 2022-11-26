@@ -67,7 +67,6 @@ const Tableyeucaunaptien = (props) => {
                 <tbody>
                     {chose == 1 ?
                         List.map((value, index) => {
-                            console.log('load');
                             !value.val.trangThai && haveLoad++;
                             return !value.val.trangThai && <Itemnaptienchuaxyly index={index} value={value} key={index} />
                         })
