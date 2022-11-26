@@ -200,7 +200,7 @@ form .txt_field {
   padding: 10px 20px;
   background-color: #110f30;
   border-radius: 4px 6px;
-  transition: .25s;
+  transition: 0.25s;
   color: #0a4988;
 }
 .cardChose > .spanChose {
@@ -211,7 +211,10 @@ form .txt_field {
   transform: scale(1.2);
   color: #ffffff;
 }
-td >img{
+td > img {
   width: 20px;
-height: 20px;
+  height: 20px;
+}
+.visibiliti {
+  display: none;
 }

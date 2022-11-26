@@ -12,7 +12,7 @@ function App() {
 
   const [isLogin, setisLogin] = useState(false)
   const [chose, setchose] = useState(1)
-
+  var classVisible = "visibiliti";
 
   return (
     <div className="App">
@@ -33,9 +33,9 @@ function App() {
               }} className={chose == 3 ? classp : ''} >Danh sách yêu cầu nạp tiền</p>
             </div>
 
-            {chose == 1 && <Table key={"tableUser"} />}
-            {chose == 2 && <TableHoadonchoigame key={"TableHoadonchoigame"} />}
-            {chose == 3 && <Tableyeucaunaptien key={"Tableyeucaunaptien"} />}
+            <Table key={"tableUser"} cl={chose == 1 ? "" : classVisible} />
+            <TableHoadonchoigame cl={chose == 2 ? "" : classVisible} key={"TableHoadonchoigame"} />
+            <Tableyeucaunaptien cl={chose == 3 ? "" : classVisible} key={"Tableyeucaunaptien"} />
 
 
           </>

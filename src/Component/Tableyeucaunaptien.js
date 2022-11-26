@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
-const Tableyeucaunaptien = () => {
-
+const Tableyeucaunaptien = (props) => {
+    var classVisible = props.cl;
     const [chose, setchose] = useState(1);
 
 
     var classspan = "spanChose";
     return (<>
+      
+
+
+        <div className={classVisible} id="containerUser" style={{ marginTop: 40 }}>
+
         <div className='cardChose'>
             <span className={chose == 1 ? classspan : ''} onClick={(e) => {
                 setchose(1)
@@ -16,8 +21,6 @@ const Tableyeucaunaptien = () => {
 
         </div>
 
-
-        <div id="containerUser" style={{ marginTop: 40 }}>
             <table id="tableUser" className="content-table">
                 <thead>
                     <tr>

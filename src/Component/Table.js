@@ -7,9 +7,9 @@ import app from "../FireBase/FireBase";
 
 
 
-const Table = () => {
+const Table = (props) => {
     var db = getDatabase(app);
-
+    var classVisible = props.cl;
     class User {
         constructor(data, key) {
             this.password = data.password;
@@ -43,7 +43,7 @@ const Table = () => {
 
     }, [])
 
-  
+
     const [search, setSearch] = useState("")
     const setValue = (e) => {
         setSearch(e.target.value)
@@ -52,7 +52,7 @@ const Table = () => {
     var isRenderCount = 0;;
 
     return (
-        <div id="containerUser">
+        <div id="containerUser" className={classVisible}>
             <input placeholder='nhập tên mà bạn muốn lọc ' style={{ padding: 10, margin: 10, }} value={search} onChange={setValue} />
 
             <table id="tableUser" className="content-table">
@@ -81,10 +81,10 @@ const Table = () => {
                         })
                     }
                     {
-                        isRenderCount == 0 &&  <tr><td style={{columnSpan:4,color:'red'}} >Không có kết quả nào</td></tr>
-                   
-                  
-                   }
+                        isRenderCount == 0 && <tr><td style={{ columnSpan: 4, color: 'red' }} >Không có kết quả nào</td></tr>
+
+
+                    }
 
 
                 </tbody>

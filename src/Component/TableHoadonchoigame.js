@@ -17,22 +17,23 @@ class Hoadonchoigame {
     }
 }
 
-export const TableHoadonchoigame = () => {
-
+export const TableHoadonchoigame = (props) => {
+    var classVisible = props.cl;
 
     const [ListHoadon, setHoadon] = useState([])
 
 
     var db = getDatabase(app);
 
-  
+
+
 
 
 
 
 
     useEffect(() => {
-       
+
 
         onValue(ref(db, '/Hoadonchoigame/'), (snapshot) => {
             var arr = [];
@@ -53,7 +54,7 @@ export const TableHoadonchoigame = () => {
     }, [])
 
     return (
-        <div id="containerUser" style={{ marginTop: 40 }}>
+        <div className={classVisible} id="containerUser" style={{ marginTop: 40 }}>
             <table id="tableUser" className="content-table">
                 <thead>
                     <tr>
@@ -68,7 +69,7 @@ export const TableHoadonchoigame = () => {
                 <tbody>
                     {
                         ListHoadon.map((val, index) => {
-                            return  <Itemhoadonchoigame key={index} index={index} val={val} />
+                            return <Itemhoadonchoigame key={index} index={index} val={val} />
                         })
                     }
                 </tbody>
