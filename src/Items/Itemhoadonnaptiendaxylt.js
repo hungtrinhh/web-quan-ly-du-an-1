@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import check from '../Image/check.png'
 
 import app from '../FireBase/FireBase';
-const Itemnaptienchuaxyly = (props) => {
+const Itemhoadonnaptiendaxylt = (props) => {
     const { value, index } = props;
     const val = value.val;
 
@@ -36,21 +36,17 @@ const Itemnaptienchuaxyly = (props) => {
     }, [])
 
 
-
-    return (
-        <tr id="itemus1">
-            <td>{index}</td>
-            <td>{User.name}</td>
-            <td>{val.date}</td>
-            <td>{val.cost}</td>
-            <td onClick={onTrush}><img src={check}></img> </td>
-
-
-        </tr>
+  return (
+    <tr id="itemus1">
+    <td>{index}</td>
+    <td>{User.name}</td>
+    <td>{val.date}</td>
+    <td>{val.cost}</td>
+    
 
 
-
-    )
+</tr>
+  )
 }
 
-export default Itemnaptienchuaxyly
+export default Itemhoadonnaptiendaxylt

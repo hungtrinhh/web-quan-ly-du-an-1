@@ -21,24 +21,28 @@ const Table = (props) => {
 
         }
     }
-
-
+   
     const [list, setList] = useState([])
-
+ 
     useEffect(() => {
 
 
         onValue(ref(db, '/Users/'), (snapshot) => {
-            var arr = [];
+            var arr = []; var user
             snapshot.forEach(childSnapshot => {
-                var user = new User(childSnapshot.val(), childSnapshot.key);
+                user = new User(childSnapshot.val(), childSnapshot.key);
                 arr.push(user);
+             
+                setList((a) => {
+               return     arr
+                }
+                );
+
+
             });
 
 
-            setList((b) => {
-                return arr;
-            });
+
         });
 
     }, [])

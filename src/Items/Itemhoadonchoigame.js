@@ -23,7 +23,6 @@ const Itemhoadonchoigame = (props) => {
     useEffect(() => {
         onValue(ref(db, `/Users/${val.userid}`), (snapshot) => {
             setUsername(snapshot.val().name);
-            console.log(snapshot.val().name);
 
         });
         onValue(ref(db, `/Game/${val.gameid}`), (snapshot) => {
@@ -36,7 +35,6 @@ const Itemhoadonchoigame = (props) => {
 
         var dateMomentObject = moment(dateString, "DD/MM/YYYY hh:mm:ss");
         var dateObject = dateMomentObject.toDate();
-        console.log(dateObject);
 
         var start = new Date();
         var secondsElapsed = (dateObject - start);
