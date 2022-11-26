@@ -15,19 +15,20 @@ const Tableyeucaunaptien = (props) => {
             this.key = key
         }
     }
+    var haveLoad = 0;
     var db = getDatabase(app);
 
     useEffect(() => {
-       
+
         onValue(ref(db, "/HoaDonNapTien/"), (snapShot) => {
             var arr = [];
             snapShot.forEach((child) => {
-              
+
                 arr.push(new Hoadon(child.val(), child.key))
-                
+
             })
             setList((a) => { return arr });
-           
+
         })
 
 
@@ -53,7 +54,6 @@ const Tableyeucaunaptien = (props) => {
                 }} >Đã xử lý</span>
 
             </div>
-
             <table id="tableUser" className="content-table">
                 <thead>
                     <tr>
@@ -64,25 +64,23 @@ const Tableyeucaunaptien = (props) => {
                         {chose == 1 && <th> </th>}
                     </tr>
                 </thead>
-
                 <tbody>
                     {chose == 1 ?
                         List.map((value, index) => {
-                                console.log('load');
+                            console.log('load');
+                            !value.val.trangThai && haveLoad++;
                             return !value.val.trangThai && <Itemnaptienchuaxyly index={index} value={value} key={index} />
-
-                        }) :
-                        List.map((value, index) => {
-
-                            return value.val.trangThai && <Itemhoadonnaptiendaxylt index={index} value={value} key={index} />
-
                         })
-
-
+                        :
+                        List.map((value, index) => {
+                            !value.val.trangThai && haveLoad++;
+                            return value.val.trangThai && <Itemhoadonnaptiendaxylt index={index} value={value} key={index} />
+                        })
                     }
-
-
-
+                    {
+                        chose == 1 ? haveLoad==0 && <tr><td style={{ columnSpan: 4, color: 'red' }} >Không có kết quả nào</td></tr> :
+                            haveLoad==0 && <tr><td style={{ columnSpan: 4, color: 'red' }} >Không có kết quả nào</td></tr>
+                    }
                 </tbody>
 
             </table>
