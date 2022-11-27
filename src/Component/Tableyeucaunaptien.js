@@ -14,23 +14,26 @@ const Tableyeucaunaptien = (props) => {
     var haveLoad = 0;
     var classspan = "spanChose";
 
-    var arrsoft = List;
-    if (soft >= 2) {
-        if (soft == 2) {
-            arrsoft.sort((a, b) => {
-                let datea = moment(a.val.date, "DD/MM/YYYY hh:mm:ss");
-                let dateb = moment(b.val.date, "DD/MM/YYYY hh:mm:ss");
-                return dateb.toDate() - datea.toDate()
-            })
-        }
-        else {
-            arrsoft.sort((a, b) => {
-                return b.val.cost - a.val.cost
-            })
-        }
-        console.log(soft);
+    var arrsoft = [];
+    List.forEach((val)=>{
+        arrsoft.push(val)
+    })
+
+    if (soft == 2) {
+        arrsoft.sort((a, b) => {
+            let datea = moment(a.val.date, "DD/MM/YYYY hh:mm:ss");
+            let dateb = moment(b.val.date, "DD/MM/YYYY hh:mm:ss");
+            return dateb.toDate() - datea.toDate()
+        })
+    } else if (soft == 3) {
+        arrsoft.sort((a, b) => {
+            return b.val.cost - a.val.cost
+        })
     }
 
+    console.log("arr",arrsoft[0] && arrsoft[0].val.cost );
+    console.log("list", List[0]&& List[0].val.cost);
+    console.log(arrsoft===List);
 
     useEffect(() => {
         class Hoadon {
@@ -68,10 +71,10 @@ const Tableyeucaunaptien = (props) => {
             <div className='naptien-option'>
                 <span >Bạn muốn sắp xếp theo ?</span>
                 <select onChange={e => {
-                  
-                    setsoft((a)=> Number(e.target.value));
+
+                    setsoft((a) => Number(e.target.value));
                 }}>
-                    <option value={-1}>none</option>
+                    <option value={1}>none</option>
                     <option value={2}>Sắp xếp theo thời gian</option>
                     <option value={3}>Sắp xép theo số tiền</option>
                 </select>
@@ -96,14 +99,11 @@ const Tableyeucaunaptien = (props) => {
 
                     {chose === 1 ?
                         arrsoft.map((value, index) => {
-
                             !value.val.trangThai && haveLoad++;
                             return !value.val.trangThai && <Itemnaptienchuaxyly index={index} value={value} key={index} />
                         })
                         :
                         arrsoft.map((value, index) => {
-                           
-
                             value.val.trangThai && haveLoad++;
                             return value.val.trangThai && <Itemhoadonnaptiendaxylt index={index} value={value} key={index} />
                         })
