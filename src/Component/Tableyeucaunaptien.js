@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useLayoutEffect } from 'react'
 import { getDatabase, ref, onValue } from 'firebase/database';
 import app from '../FireBase/FireBase';
 import Itemnaptienchuaxyly from '../Items/Itemnaptienchuaxyly';
@@ -9,37 +9,27 @@ const Tableyeucaunaptien = (props) => {
     var classVisible = props.cl;
     const [chose, setchose] = useState(1);
     const [List, setList] = useState([]);
-    const [Listshow, setListshow] = useState([]);
-    const [soft, setsoft] = useState(1)
-    const [render, setrender] = useState(1);
+    const [soft, setsoft] = useState(1);
+
+    var haveLoad = 0;
+    var classspan = "spanChose";
+
     var arrsoft = List;
-
-
-    useEffect(() => {
-
-        if (soft > 1) {
-            if (soft == 2) {
-                arrsoft.sort((a, b) => {
-                    let datea = moment(a.val.date, "DD/MM/YYYY hh:mm:ss");
-                    let dateb = moment(b.val.date, "DD/MM/YYYY hh:mm:ss");
-
-                    return dateb.toDate() - datea.toDate()
-                })
-            }
-            else {
-                arrsoft.sort((a, b) => {
-                    return b.val.cost - a.val.cost
-                })
-
-            }
-            setListshow(arrsoft)
-        } else {
-            setListshow(List);
+    if (soft >= 2) {
+        if (soft == 2) {
+            arrsoft.sort((a, b) => {
+                let datea = moment(a.val.date, "DD/MM/YYYY hh:mm:ss");
+                let dateb = moment(b.val.date, "DD/MM/YYYY hh:mm:ss");
+                return dateb.toDate() - datea.toDate()
+            })
         }
-    }, [soft, List])
-
-
-
+        else {
+            arrsoft.sort((a, b) => {
+                return b.val.cost - a.val.cost
+            })
+        }
+        console.log(soft);
+    }
 
 
     useEffect(() => {
@@ -60,15 +50,8 @@ const Tableyeucaunaptien = (props) => {
 
         })
     }, [])
-    var haveLoad = 0;
 
-
-
-
-    var classspan = "spanChose";
     return (<>
-
-
 
         <div className={classVisible} id="containerUser">
 
@@ -84,10 +67,11 @@ const Tableyeucaunaptien = (props) => {
 
             <div className='naptien-option'>
                 <span >Bạn muốn sắp xếp theo ?</span>
-                <select onChange={(e) => {
-                    setsoft(Number(e.target.value));
+                <select onChange={e => {
+                  
+                    setsoft((a)=> Number(e.target.value));
                 }}>
-                    <option value={1}>none</option>
+                    <option value={-1}>none</option>
                     <option value={2}>Sắp xếp theo thời gian</option>
                     <option value={3}>Sắp xép theo số tiền</option>
                 </select>
@@ -109,14 +93,17 @@ const Tableyeucaunaptien = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    
+
                     {chose === 1 ?
-                        Listshow.map((value, index) => {
+                        arrsoft.map((value, index) => {
+
                             !value.val.trangThai && haveLoad++;
                             return !value.val.trangThai && <Itemnaptienchuaxyly index={index} value={value} key={index} />
                         })
                         :
-                        Listshow.map((value, index) => {
+                        arrsoft.map((value, index) => {
+                           
+
                             value.val.trangThai && haveLoad++;
                             return value.val.trangThai && <Itemhoadonnaptiendaxylt index={index} value={value} key={index} />
                         })
