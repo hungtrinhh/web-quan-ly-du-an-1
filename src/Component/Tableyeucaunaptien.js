@@ -11,13 +11,13 @@ const Tableyeucaunaptien = (props) => {
     const [List, setList] = useState([]);
     const [soft, setsoft] = useState(1);
 
+
+
     var haveLoad = 0;
     var classspan = "spanChose";
 
-    var arrsoft = [];
-    List.forEach((val)=>{
-        arrsoft.push(val)
-    })
+    var arrsoft = [...List];
+  
 
     if (soft == 2) {
         arrsoft.sort((a, b) => {
@@ -31,9 +31,9 @@ const Tableyeucaunaptien = (props) => {
         })
     }
 
-    console.log("arr",arrsoft[0] && arrsoft[0].val.cost );
-    console.log("list", List[0]&& List[0].val.cost);
-    console.log(arrsoft===List);
+    console.log("arr", arrsoft[0] && arrsoft[0].val.cost);
+    console.log("list", List[0] && List[0].val.cost);
+    console.log(arrsoft === List);
 
     useEffect(() => {
         class Hoadon {
