@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { getDatabase, ref, onValue, child, update } from 'firebase/database';
+import { getDatabase, ref, onValue, child, update,query } from 'firebase/database';
 
 import { useEffect, useState } from "react";
 import check from '../Image/check.png'

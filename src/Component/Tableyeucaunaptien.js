@@ -31,9 +31,7 @@ const Tableyeucaunaptien = (props) => {
         })
     }
 
-    console.log("arr", arrsoft[0] && arrsoft[0].val.cost);
-    console.log("list", List[0] && List[0].val.cost);
-    console.log(arrsoft === List);
+
 
     useEffect(() => {
         class Hoadon {

@@ -4,6 +4,7 @@ import moment from 'moment/moment';
 import { TableHoadonchoigame } from "./Component/TableHoadonchoigame";
 import Loginform from "./Component/Loginform";
 import Tableyeucaunaptien from "./Component/Tableyeucaunaptien";
+import TableDoanhthu from "./Component/TableDoanhthu";
 
 
 function App() {
@@ -31,12 +32,15 @@ function App() {
               <p onClick={(e) => {
                 setchose(3);
               }} className={chose == 3 ? classp : ''} >Danh sách yêu cầu nạp tiền</p>
+               <p onClick={(e) => {
+                setchose(4);
+              }} className={chose == 4 ? classp : ''} >Doanh thu các trò chơi</p>
             </div>
 
             <Table key={"tableUser"} cl={chose == 1 ? "" : classVisible} />
-            <TableHoadonchoigame cl={chose == 2 ? "" : classVisible} key={"TableHoadonchoigame"} />
-            <Tableyeucaunaptien cl={chose == 3 ? "" : classVisible} key={"Tableyeucaunaptien"} />
-
+            <TableHoadonchoigame cl={chose == 2 ? "" : classVisible}  />
+            <Tableyeucaunaptien cl={chose == 3 ? "" : classVisible}  />
+            <TableDoanhthu  cl={chose == 4 ? "" : classVisible} />
 
           </>
           : <>

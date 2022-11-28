@@ -7,7 +7,7 @@ import check from '../Image/check.png'
 
 import app from '../FireBase/FireBase';
 const Itemnaptienchuaxyly = (props) => {
-    const { value, index } = props;
+    const { value, index ,searchName} = props;
     const val = value.val;
 
     const [User, setUser] = useState("")
@@ -34,8 +34,9 @@ const Itemnaptienchuaxyly = (props) => {
     }, [])
 
 
-
+    
     return (
+     
         <tr id="itemus1">
             <td>{index}</td>
             <td>{User.name}</td>
