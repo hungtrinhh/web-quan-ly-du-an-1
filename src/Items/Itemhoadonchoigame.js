@@ -41,7 +41,7 @@ const Itemhoadonchoigame = (props) => {
         if (timeout == null && secondsElapsed >= 0) {
             timeout = setTimeout(() => {
                 update(ref(db, `/Game/${val.gameid}`), {
-                    trangThai: "Đang hoat động"
+                    trangThai: "Đang hoạt động"
 
                 })
                 update(ref(db, val.id), {
