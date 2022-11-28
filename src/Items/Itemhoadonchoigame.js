@@ -38,7 +38,7 @@ const Itemhoadonchoigame = (props) => {
 
         var start = new Date();
         var secondsElapsed = (dateObject - start);
-        if (timeout == null && secondsElapsed >= 0) {
+        if (timeout == null  ) {
             timeout = setTimeout(() => {
                 update(ref(db, `/Game/${val.gameid}`), {
                     trangThai: "Đang hoạt động"
