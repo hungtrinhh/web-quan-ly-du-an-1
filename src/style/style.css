@@ -136,12 +136,14 @@ form .txt_field {
   color: var(--background-color-white);
   text-align: left;
   font-weight: bold;
+  text-align: center;
   background-color: var(--background-color-blue);
 }
 
 .content-table th,
 .content-table td {
   padding: 12px 15px;
+  text-align: center;
 }
 
 .content-table tbody tr {
@@ -219,7 +221,7 @@ td > img {
 .visibiliti {
   display: none;
 }
-.naptien-option{
+.naptien-option {
   margin: 30px;
   width: 20%;
   justify-content: center;
@@ -228,19 +230,35 @@ td > img {
   height: auto;
   border-radius: 7px;
   padding: 20px;
-background-color: #064d8f;
-
+  background-color: #064d8f;
 }
-.naptien-option >span{
+.naptien-option > span {
   color: white;
 }
 
-.naptien-option >select {
+.naptien-option > select {
   padding: 10px 20px;
   border: none;
   margin-top: 20px;
   outline: none;
- font-size: 15px;
- border-radius: 5px;
+  font-size: 15px;
+  border-radius: 5px;
+}
+.nextBack {
+  margin-top: 30px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+}
+.nextBack > img {
+  cursor: pointer;
+  margin-inline: 20px;
+  width: 40px;
+  transition: .25s;
+  height: 40px;
+}
+.nextBack > img:hover {
+  transform: scale(1.2);
 
 }

@@ -1,9 +1,12 @@
 import moment from 'moment';
 import React from 'react'
-import { getDatabase, set, ref, onValue, update, remove } from 'firebase/database'
+import { getDatabase, set, ref, onValue, update, remove, query, endBefore, endAt, orderByChild, limitToLast } from 'firebase/database'
 import { useEffect, useState } from "react";
 import app from "../FireBase/FireBase";
 import Itemhoadonchoigame from '../Items/Itemhoadonchoigame';
+
+import next  from '../Image/next.png'
+import back  from '../Image/back.png'
 
 class Hoadonchoigame {
     constructor(data, key) {
@@ -17,25 +20,17 @@ class Hoadonchoigame {
     }
 }
 
+
 export const TableHoadonchoigame = (props) => {
     var classVisible = props.cl;
 
     const [ListHoadon, setHoadon] = useState([])
-
-
     var db = getDatabase(app);
 
-
-
-
-
-
-
-
+    const [itemrender, setitemrender] = useState(10)
     useEffect(() => {
 
-
-        onValue(ref(db, '/Hoadonchoigame/'), (snapshot) => {
+        onValue(ref(db, "Hoadonchoigame"), (snapshot) => {
             var arr = [];
             snapshot.forEach(childSnapshot => {
                 childSnapshot.forEach(snapshotchild => {
@@ -48,7 +43,7 @@ export const TableHoadonchoigame = (props) => {
                 })
             });
             setHoadon((a) => {
-                return arr;
+                return arr.reverse();
             });
         });
     }, [])
@@ -69,12 +64,27 @@ export const TableHoadonchoigame = (props) => {
                 <tbody>
                     {
                         ListHoadon.map((val, index) => {
-                            return <Itemhoadonchoigame key={index} index={index} val={val} />
+                            if (index >= itemrender-10 && index<itemrender) {
+                                return <Itemhoadonchoigame key={index} index={index} val={val} />
+                            }
+                           
                         })
                     }
                 </tbody>
 
             </table>
+
+                    <div className='nextBack'>
+                        <img
+                         onClick={e=>itemrender>10&& setitemrender(itemrender-10)}
+                         src={back}
+                        ></img>
+
+                        <img
+                         onClick={e=>itemrender+10 - ListHoadon.length<10&& setitemrender(itemrender+10)}
+
+                         src={next}></img>
+                    </div>
 
 
 

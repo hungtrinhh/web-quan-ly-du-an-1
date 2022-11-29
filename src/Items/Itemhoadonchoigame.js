@@ -49,7 +49,6 @@ const Itemhoadonchoigame = (props) => {
                 })
 
             }, secondsElapsed);
-            console.log("da setTimeout");
         }
 
 
