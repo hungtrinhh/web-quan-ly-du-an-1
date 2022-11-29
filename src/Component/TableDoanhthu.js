@@ -11,43 +11,34 @@ const TableDoanhthu = (props) => {
     const [Hoadon, setHoadon] = useState([]);
     var db = getDatabase(app);
 
-    console.log(Hoadon);
 
     var Doanhthuarr = [];
-
     class Game {
         constructor(game, id) {
             this.game = game;
             this.id = id;
         }
     }
-
     class Doanhthu {
         Doanhthu = 0;
         constructor(Game) {
             this.Game = Game;
-
-
-
         }
     }
+
+  
+
+    
+
     games.map((val) => {
         Doanhthuarr.push(new Doanhthu(val, 0));
-
     });
-
-    Hoadon.map((val) => {
+    Doanhthuarr.length > 0 && Hoadon.map((val) => {
         Doanhthuarr[Number(val.gameid) - 1].Doanhthu += val.cost;
-
-
-
     })
-    console.log(Doanhthuarr);
 
 
     useEffect(() => {
-
-
         let arr2 = [];
         onValue(ref(db, "Hoadonchoigame/"), snapShot => {
             snapShot.forEach(snapShot1 => {
@@ -60,8 +51,6 @@ const TableDoanhthu = (props) => {
             setHoadon(arr2);
         })
 
-
-
         onValue(ref(db, "Game"), (snapShot) => {
             let arr1 = [];
             snapShot.forEach((childsnapShot) => {
@@ -71,8 +60,10 @@ const TableDoanhthu = (props) => {
         })
     }, [])
 
-
-
+    ///soft
+    Doanhthuarr.length != 0 && Doanhthuarr.sort((a, b) => {
+        return b.Doanhthu - a.Doanhthu
+    })
 
 
     return (
@@ -88,10 +79,12 @@ const TableDoanhthu = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {
-                        Doanhthuarr.map((val,index) => {
 
-                            return <Itemdoanhthu val={val} index = {index} key={index} />
+                    {
+
+                        Doanhthuarr.length != 0 && Doanhthuarr.map((val, index) => {
+
+                            return <Itemdoanhthu val={val} index={index} key={index} />
 
                         })
 
