@@ -29,7 +29,6 @@ export const TableHoadonchoigame = (props) => {
 
     const [itemrender, setitemrender] = useState(10)
     useEffect(() => {
-
         onValue(ref(db, "Hoadonchoigame"), (snapshot) => {
             var arr = [];
             snapshot.forEach(childSnapshot => {
