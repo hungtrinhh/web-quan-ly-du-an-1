@@ -15,6 +15,7 @@ class Hoadonchoigame {
 }
 const Itemhoadonchoigame = (props) => {
     const val = props.val
+    const cl = props.cl
     const [Username, setUsername] = useState("");
     const [gameName, setGameName] = useState("");
     var db = getDatabase(app);
@@ -38,7 +39,9 @@ const Itemhoadonchoigame = (props) => {
 
         var start = new Date();
         var secondsElapsed = (dateObject - start);
-        if (timeout == null && secondsElapsed>=0) {
+        console.log(secondsElapsed > 0 && secondsElapsed);
+        if (timeout == null && !val.success && secondsElapsed >= 0) {
+            console.log("da set time out");
             timeout = setTimeout(() => {
                 update(ref(db, `/Game/${val.gameid}`), {
                     trangThai: "Đang hoạt động"
@@ -47,6 +50,7 @@ const Itemhoadonchoigame = (props) => {
                 update(ref(db, val.id), {
                     success: true
                 })
+
 
             }, secondsElapsed);
         }
@@ -57,7 +61,7 @@ const Itemhoadonchoigame = (props) => {
 
 
     return (val.success && <>
-        <tr id="itemus1">
+        <tr id="itemus1" className={cl}>
             <td>{props.index}</td>
             <td>{Username}</td>
             <td>{gameName}</td>

@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import app from "../FireBase/FireBase";
 import Itemhoadonchoigame from '../Items/Itemhoadonchoigame';
 
-import next  from '../Image/next.png'
-import back  from '../Image/back.png'
+import next from '../Image/next.png'
+import back from '../Image/back.png'
 
 class Hoadonchoigame {
     constructor(data, key) {
@@ -41,12 +41,14 @@ export const TableHoadonchoigame = (props) => {
                     })
                 })
             });
+            console.log("reload");
             setHoadon((a) => {
-                return arr.reverse();
+                return arr;
             });
         });
     }, [])
-
+    console.log(ListHoadon);
+    
     return (
         <div className={classVisible} id="containerUser" style={{ marginTop: 40 }}>
             <table id="tableUser" className="content-table">
@@ -63,27 +65,27 @@ export const TableHoadonchoigame = (props) => {
                 <tbody>
                     {
                         ListHoadon.map((val, index) => {
-                            if (index >= itemrender-10 && index<itemrender) {
-                                return <Itemhoadonchoigame key={index} index={index} val={val} />
-                            }
-                           
+                            var dk = index >= itemrender - 10 && index < itemrender
+                            return <Itemhoadonchoigame cl={!dk && "visibiliti"} key={index} index={index} val={val} />
+
+
                         })
                     }
                 </tbody>
 
             </table>
 
-                    <div className='nextBack'>
-                        <img
-                         onClick={e=>itemrender>10&& setitemrender(itemrender-10)}
-                         src={back}
-                        ></img>
+            <div className='nextBack'>
+                <img
+                    onClick={e => itemrender > 10 && setitemrender(itemrender - 10)}
+                    src={back}
+                ></img>
 
-                        <img
-                         onClick={e=>itemrender+10 - ListHoadon.length<10&& setitemrender(itemrender+10)}
+                <img
+                    onClick={e => itemrender + 10 - ListHoadon.length < 10 && setitemrender(itemrender + 10)}
 
-                         src={next}></img>
-                    </div>
+                    src={next}></img>
+            </div>
 
 
 
