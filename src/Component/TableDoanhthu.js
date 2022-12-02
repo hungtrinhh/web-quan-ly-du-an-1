@@ -25,9 +25,7 @@ const TableDoanhthu = (props) => {
             this.Game = Game;
         }
     }
-    console.log(games);
-    console.log(Hoadon);
-
+ 
   
 
     console.log(Doanhthuarr);
