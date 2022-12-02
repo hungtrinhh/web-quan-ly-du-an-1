@@ -36,7 +36,7 @@ const TableDoanhthu = (props) => {
     Doanhthuarr.length > 0 && Hoadon.map((val) => {
         Doanhthuarr[Number(val.gameid) - 1].Doanhthu += val.cost;
     })
-
+console.log(123);
 
     useEffect(() => {
         let arr2 = [];
