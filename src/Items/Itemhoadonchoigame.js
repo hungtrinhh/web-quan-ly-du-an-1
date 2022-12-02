@@ -20,6 +20,25 @@ const Itemhoadonchoigame = (props) => {
     const [gameName, setGameName] = useState("");
     var db = getDatabase(app);
 
+    var dateString = val.dateEnd;
+    var dateMomentObject = moment(dateString, "DD/MM/YYYY hh:mm:ss");
+    var dateObject = dateMomentObject.toDate();
+
+    var start = new Date();
+    var secondsElapsed = (dateObject - start);
+    console.log(secondsElapsed > 0 ? secondsElapsed :"");
+    if (!val.success) {
+        console.log("da set time out");
+      setTimeout(() => {
+            update(ref(db, `/Game/${val.gameid}`), {
+                trangThai: "Đang hoạt động"
+
+            })
+            update(ref(db, val.id), {
+                success: true
+            })
+        }, secondsElapsed);
+    }
 
     useEffect(() => {
         onValue(ref(db, `/Users/${val.userid}`), (snapshot) => {
@@ -30,32 +49,7 @@ const Itemhoadonchoigame = (props) => {
             setGameName(snapshot.val().tenGame);
         });
 
-
-        var timeout;
-        var dateString = val.dateEnd;
-
-        var dateMomentObject = moment(dateString, "DD/MM/YYYY hh:mm:ss");
-        var dateObject = dateMomentObject.toDate();
-
-        var start = new Date();
-        var secondsElapsed = (dateObject - start);
-        console.log(secondsElapsed > 0 && secondsElapsed);
-        if (timeout == null && !val.success && secondsElapsed >= 0) {
-            console.log("da set time out");
-            timeout = setTimeout(() => {
-                update(ref(db, `/Game/${val.gameid}`), {
-                    trangThai: "Đang hoạt động"
-
-                })
-                update(ref(db, val.id), {
-                    success: true
-                })
-
-
-            }, secondsElapsed);
-        }
-
-
+      
     }, [])
 
 

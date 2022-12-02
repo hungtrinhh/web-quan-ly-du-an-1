@@ -3,7 +3,7 @@ import { getDatabase, ref, onValue } from 'firebase/database'
 import { useEffect, useState } from "react";
 import app from "../FireBase/FireBase";
 import Itemhoadonchoigame from '../Items/Itemhoadonchoigame';
-
+import moment from 'moment';
 import next from '../Image/next.png'
 import back from '../Image/back.png'
 
@@ -26,9 +26,13 @@ export const TableHoadonchoigame = (props) => {
     const [ListHoadon, setHoadon] = useState([])
     var db = getDatabase(app);
 
+
+
+  
+
     const [itemrender, setitemrender] = useState(10)
     useEffect(() => {
-        
+
         onValue(ref(db, "Hoadonchoigame"), (snapshot) => {
             var arr = [];
             snapshot.forEach(childSnapshot => {
@@ -42,10 +46,11 @@ export const TableHoadonchoigame = (props) => {
                 })
             });
             setHoadon((a) => {
-                return arr;
+                return arr.reverse();
             });
         });
     }, [])
+    console.log(ListHoadon);
 
     return (
         <div className={classVisible} id="containerUser" style={{ marginTop: 40 }}>
@@ -64,7 +69,7 @@ export const TableHoadonchoigame = (props) => {
                     {
                         ListHoadon.map((val, index) => {
                             var dk = index >= itemrender - 10 && index < itemrender
-                            return <Itemhoadonchoigame cl={!dk && "visibiliti"} key={index} index={index} val={val} />
+                            return <Itemhoadonchoigame cl={!dk ? "visibiliti" : ""} key={index} index={index} val={val} />
 
 
                         })

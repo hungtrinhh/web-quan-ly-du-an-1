@@ -9,16 +9,11 @@ const TableDoanhthu = (props) => {
 
     const [games, setGames] = useState([])
     const [Hoadon, setHoadon] = useState([]);
-    var db = getDatabase(app);
+   
 
 
     var Doanhthuarr = [];
-    class Game {
-        constructor(game, id) {
-            this.game = game;
-            this.id = id;
-        }
-    }
+    
     class Doanhthu {
         Doanhthu = 0;
         constructor(Game) {
@@ -37,9 +32,16 @@ const TableDoanhthu = (props) => {
     Doanhthuarr.length > 0 && Hoadon.map((val) => {
         Doanhthuarr[Number(val.gameid) - 1].Doanhthu += val.cost; return val
     })
-console.log(123);
 
     useEffect(() => {
+        class Game {
+            constructor(game, id) {
+                this.game = game;
+                this.id = id;
+            }
+        }
+
+        var db = getDatabase(app);
         let arr2 = [];
         onValue(ref(db, "Hoadonchoigame/"), snapShot => {
             snapShot.forEach(snapShot1 => {
@@ -62,7 +64,7 @@ console.log(123);
     }, [])
 
     ///soft
-    Doanhthuarr.length != 0 && Doanhthuarr.sort((a, b) => {
+    Doanhthuarr.length !== 0 && Doanhthuarr.sort((a, b) => {
         return b.Doanhthu - a.Doanhthu
     })
 
@@ -83,7 +85,7 @@ console.log(123);
 
                     {
 
-                        Doanhthuarr.length != 0 && Doanhthuarr.map((val, index) => {
+                        Doanhthuarr.length !== 0 && Doanhthuarr.map((val, index) => {
 
                             return <Itemdoanhthu val={val} index={index} key={index} />
 
