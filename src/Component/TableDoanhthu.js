@@ -32,9 +32,10 @@ const TableDoanhthu = (props) => {
 
     games.map((val) => {
         Doanhthuarr.push(new Doanhthu(val, 0));
+        return val
     });
     Doanhthuarr.length > 0 && Hoadon.map((val) => {
-        Doanhthuarr[Number(val.gameid) - 1].Doanhthu += val.cost;
+        Doanhthuarr[Number(val.gameid) - 1].Doanhthu += val.cost; return val
     })
 console.log(123);
 
