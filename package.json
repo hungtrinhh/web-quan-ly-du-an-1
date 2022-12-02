@@ -1,5 +1,5 @@
 {
-  "homepage": "https://hungtrinhh.github.io",
+  "homepage": "https://hungtrinhh.github.io/web-quan-ly-du-an-1",
 
   "name": "webreact",
   "version": "0.1.0",
@@ -23,7 +23,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy":"npm run build",
-    "deploy" : "gh-pages -d build"
+      "deploy": "gh-pages -b master -d build"
   },
   "eslintConfig": {
     "extends": [
