@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/web-quan-ly-du-an-1/static/css/main.e52a401b.css",
+    "main.js": "/web-quan-ly-du-an-1/static/js/main.c64864de.js",
+    "index.html": "/web-quan-ly-du-an-1/index.html",
+    "main.e52a401b.css.map": "/web-quan-ly-du-an-1/static/css/main.e52a401b.css.map",
+    "main.c64864de.js.map": "/web-quan-ly-du-an-1/static/js/main.c64864de.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e52a401b.css",
+    "static/js/main.c64864de.js"
+  ]
+}
