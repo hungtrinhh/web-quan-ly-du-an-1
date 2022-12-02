@@ -1,6 +1,5 @@
-import moment from 'moment';
 import React from 'react'
-import { getDatabase, set, ref, onValue, update, remove, query, endBefore, endAt, orderByChild, limitToLast } from 'firebase/database'
+import { getDatabase, ref, onValue } from 'firebase/database'
 import { useEffect, useState } from "react";
 import app from "../FireBase/FireBase";
 import Itemhoadonchoigame from '../Items/Itemhoadonchoigame';
@@ -29,6 +28,7 @@ export const TableHoadonchoigame = (props) => {
 
     const [itemrender, setitemrender] = useState(10)
     useEffect(() => {
+        
         onValue(ref(db, "Hoadonchoigame"), (snapshot) => {
             var arr = [];
             snapshot.forEach(childSnapshot => {
@@ -41,14 +41,12 @@ export const TableHoadonchoigame = (props) => {
                     })
                 })
             });
-            console.log("reload");
             setHoadon((a) => {
                 return arr;
             });
         });
     }, [])
-    console.log(ListHoadon);
-    
+
     return (
         <div className={classVisible} id="containerUser" style={{ marginTop: 40 }}>
             <table id="tableUser" className="content-table">

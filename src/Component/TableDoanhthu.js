@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { onValue, ref, child, getDatabase, query, equalTo, orderByChild } from 'firebase/database';
+import { onValue, ref, getDatabase } from 'firebase/database';
 import app from '../FireBase/FireBase';
 import Itemdoanhthu from '../Items/Itemdoanhthu';
 
@@ -25,10 +25,12 @@ const TableDoanhthu = (props) => {
             this.Game = Game;
         }
     }
+    console.log(games);
+    console.log(Hoadon);
 
   
 
-    
+    console.log(Doanhthuarr);
 
     games.map((val) => {
         Doanhthuarr.push(new Doanhthu(val, 0));
