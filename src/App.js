@@ -36,12 +36,13 @@ function App() {
                 setchose(4);
               }} className={chose == 4 ? classp : ''} >Doanh thu các trò chơi</p>
             </div>
+           
 
             <Table key={"tableUser"} cl={chose == 1 ? "" : classVisible} />
             <TableHoadonchoigame cl={chose == 2 ? "" : classVisible}  />
             <Tableyeucaunaptien cl={chose == 3 ? "" : classVisible}  />
             <TableDoanhthu  cl={chose == 4 ? "" : classVisible} />
-
+             
           </>
           : <>
             <Loginform setisLogin={setisLogin} />

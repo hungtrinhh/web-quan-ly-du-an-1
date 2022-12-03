@@ -13,7 +13,6 @@ const TableDoanhthu = (props) => {
 
 
     var Doanhthuarr = [];
-    
     class Doanhthu {
         Doanhthu = 0;
         constructor(Game) {
@@ -23,12 +22,12 @@ const TableDoanhthu = (props) => {
  
   
 
-    console.log(Doanhthuarr);
 
     games.map((val) => {
         Doanhthuarr.push(new Doanhthu(val, 0));
         return val
     });
+
     Doanhthuarr.length > 0 && Hoadon.map((val) => {
         Doanhthuarr[Number(val.gameid) - 1].Doanhthu += val.cost; return val
     })
@@ -42,8 +41,9 @@ const TableDoanhthu = (props) => {
         }
 
         var db = getDatabase(app);
-        let arr2 = [];
+       
         onValue(ref(db, "Hoadonchoigame/"), snapShot => {
+            let arr2 = [];
             snapShot.forEach(snapShot1 => {
                 snapShot1.forEach(snapShot2 => {
                     snapShot2.forEach(snapShot3 => {
@@ -51,6 +51,7 @@ const TableDoanhthu = (props) => {
                     })
                 })
             })
+            Doanhthuarr = []
             setHoadon(arr2);
         })
 
@@ -59,6 +60,7 @@ const TableDoanhthu = (props) => {
             snapShot.forEach((childsnapShot) => {
                 arr1.push(new Game(childsnapShot.val(), childsnapShot.key));
             })
+            Doanhthuarr = []
             setGames(arr1);
         })
     }, [])
@@ -78,15 +80,13 @@ const TableDoanhthu = (props) => {
                     <tr>
                         <td>STT</td>
                         <th>Tên Trò chơi</th>
+                        <th>Trạng thái</th>
                         <th>Doanh thu</th>
                     </tr>
                 </thead>
                 <tbody>
-
                     {
-
                         Doanhthuarr.length !== 0 && Doanhthuarr.map((val, index) => {
-
                             return <Itemdoanhthu val={val} index={index} key={index} />
 
                         })

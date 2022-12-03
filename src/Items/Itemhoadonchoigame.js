@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getDatabase, set, ref, onValue, update, remove } from 'firebase/database'
 import app from "../FireBase/FireBase";
 import moment from 'moment/moment';
+
 class Hoadonchoigame {
     constructor(data, key) {
         this.cost = data.cost;
@@ -16,19 +17,17 @@ class Hoadonchoigame {
 const Itemhoadonchoigame = (props) => {
     const val = props.val
     const cl = props.cl
-    const [Username, setUsername] = useState("");
-    const [gameName, setGameName] = useState("");
-    var db = getDatabase(app);
+  
 
     var dateString = val.dateEnd;
     var dateMomentObject = moment(dateString, "DD/MM/YYYY hh:mm:ss");
     var dateObject = dateMomentObject.toDate();
+    var db = getDatabase(app);
 
     var start = new Date();
-    var secondsElapsed = (dateObject - start);
-    console.log(secondsElapsed > 0 ? secondsElapsed :"");
+    var secondsElapsed = dateObject - start;
     if (!val.success) {
-        console.log("da set time out");
+        
       setTimeout(() => {
             update(ref(db, `/Game/${val.gameid}`), {
                 trangThai: "Đang hoạt động"
@@ -40,31 +39,19 @@ const Itemhoadonchoigame = (props) => {
         }, secondsElapsed);
     }
 
-    useEffect(() => {
-        onValue(ref(db, `/Users/${val.userid}`), (snapshot) => {
-            setUsername(snapshot.val().name);
-
-        });
-        onValue(ref(db, `/Game/${val.gameid}`), (snapshot) => {
-            setGameName(snapshot.val().tenGame);
-        });
-
-      
-    }, [])
+  
 
 
-
-    return (val.success && <>
+    return ( 
         <tr id="itemus1" className={cl}>
             <td>{props.index}</td>
-            <td>{Username}</td>
-            <td>{gameName}</td>
+            <td>{val.userid.username}</td>
+            <td>{val.gameid.tenGame}</td>
             <td>{val.dateStart}</td>
             <td>{val.dateEnd}</td>
             <td>{val.cost}</td>
         </tr>
-    </>
-
+    
     )
 }
 

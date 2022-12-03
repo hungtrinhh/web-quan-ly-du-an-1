@@ -7,23 +7,14 @@ import { useEffect, useState } from "react";
 
 import app from '../FireBase/FireBase';
 const Itemhoadonnaptiendaxylt = (props) => {
-    const { value, index } = props;
+    const { value, index,cl } = props;
     const val = value.val;
+
 
     const [User, setUser] = useState("")
     var db = getDatabase(app);
 
-    const onTrush = (e) => {
-        update(ref(db, `Users/${val.userId}`), {
-            sodu: User.sodu + val.cost
-        });
-        update(ref(db, `HoaDonNapTien/${value.key}`), {
-            trangThai: true
-        })
-
-
-
-    }
+   
     useEffect(() => {
         var db = getDatabase(app);
         onValue(ref(db, `Users/${val.userId}`), (dataSnapshot) => {
@@ -35,7 +26,7 @@ const Itemhoadonnaptiendaxylt = (props) => {
 
 
   return (
-    <tr id="itemus1">
+    <tr id="itemus1" className={cl}>
     <td>{index}</td>
     <td>{User.name}</td>
     <td>{val.date}</td>

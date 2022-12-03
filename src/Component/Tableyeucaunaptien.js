@@ -4,6 +4,8 @@ import app from '../FireBase/FireBase';
 import Itemnaptienchuaxyly from '../Items/Itemnaptienchuaxyly';
 import Itemhoadonnaptiendaxylt from '../Items/Itemhoadonnaptiendaxylt';
 import moment from 'moment';
+import next from '../Image/next.png'
+import back from '../Image/back.png'
 
 const Tableyeucaunaptien = (props) => {
     var classVisible = props.cl;
@@ -11,13 +13,16 @@ const Tableyeucaunaptien = (props) => {
     const [List, setList] = useState([]);
     const [soft, setsoft] = useState(1);
 
+    const [pages, setPages] = useState(10)
 
+    const classVisi = 'visibiliti';
 
     var haveLoad = 0;
     var classspan = "spanChose";
-
     var arrsoft = [...List];
-  
+
+
+
 
     if (soft == 2) {
         arrsoft.sort((a, b) => {
@@ -30,7 +35,6 @@ const Tableyeucaunaptien = (props) => {
             return b.val.cost - a.val.cost
         })
     }
-
 
 
     useEffect(() => {
@@ -58,9 +62,11 @@ const Tableyeucaunaptien = (props) => {
 
             <div className='cardChose'>
                 <span className={chose === 1 ? classspan : ''} onClick={(e) => {
+                    setPages(10);
                     setchose(1)
                 }} >Chưa xử lý</span>
                 <span className={chose === 2 ? classspan : ''} onClick={(e) => {
+                    setPages(10);
                     setchose(2);
                 }} >Đã xử lý</span>
 
@@ -98,12 +104,18 @@ const Tableyeucaunaptien = (props) => {
                     {chose === 1 ?
                         arrsoft.map((value, index) => {
                             !value.val.trangThai && haveLoad++;
-                            return !value.val.trangThai && <Itemnaptienchuaxyly index={index} value={value} key={index} />
+
+
+                            return !value.val.trangThai && <Itemnaptienchuaxyly
+                                cl={(index >= pages - 10 && index < pages) ? "" : classVisi}
+                                index={index} value={value} key={index} />
                         })
                         :
                         arrsoft.map((value, index) => {
                             value.val.trangThai && haveLoad++;
-                            return value.val.trangThai && <Itemhoadonnaptiendaxylt index={index} value={value} key={index} />
+                            return value.val.trangThai && <Itemhoadonnaptiendaxylt
+                                cl={(index >= pages - 10 && index < pages) ? "" : classVisi}
+                                index={index} value={value} key={index} />
                         })
 
                     }
@@ -115,10 +127,17 @@ const Tableyeucaunaptien = (props) => {
                 </tbody>
 
             </table>
+            <div className='nextBack'>
+                <img
+                    onClick={e => pages > 10 && setPages(pages - 10)}
+                    src={back}
+                ></img>
 
+                <img
+                    onClick={e => pages + 10 - List.length < 10 && setPages(pages + 10)}
 
-
-
+                    src={next}></img>
+            </div>
 
 
 
