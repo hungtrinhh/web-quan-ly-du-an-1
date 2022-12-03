@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/web-quan-ly-du-an-1/static/css/main.e52a401b.css",
-    "main.js": "/web-quan-ly-du-an-1/static/js/main.6db0ae3c.js",
+    "main.js": "/web-quan-ly-du-an-1/static/js/main.ce2f1c35.js",
     "index.html": "/web-quan-ly-du-an-1/index.html",
     "main.e52a401b.css.map": "/web-quan-ly-du-an-1/static/css/main.e52a401b.css.map",
-    "main.6db0ae3c.js.map": "/web-quan-ly-du-an-1/static/js/main.6db0ae3c.js.map"
+    "main.ce2f1c35.js.map": "/web-quan-ly-du-an-1/static/js/main.ce2f1c35.js.map"
   },
   "entrypoints": [
     "static/css/main.e52a401b.css",
-    "static/js/main.6db0ae3c.js"
+    "static/js/main.ce2f1c35.js"
   ]
 }
