@@ -17,19 +17,18 @@ class Hoadonchoigame {
 const Itemhoadonchoigame = (props) => {
     const val = props.val
     const cl = props.cl
-  
 
-    var dateString = val.dateEnd;
-    var dateMomentObject = moment(dateString, "DD/MM/YYYY hh:mm:ss");
-    var dateObject = dateMomentObject.toDate();
+
+    var dateObject = moment(val.dateEnd, "DD/MM/YYYY hh:mm:ss");
+    dateObject = dateObject.toDate();
     var db = getDatabase(app);
-
     var start = new Date();
+
     var secondsElapsed = dateObject - start;
     if (!val.success) {
-        
-      setTimeout(() => {
-            update(ref(db, `/Game/${val.gameid}`), {
+        console.log("Đã set giờ tắt trong :" + secondsElapsed);
+        setTimeout(() => {
+            update(ref(db, `/Game/${val.gameid.id}`), {
                 trangThai: "Đang hoạt động"
 
             })
@@ -39,10 +38,10 @@ const Itemhoadonchoigame = (props) => {
         }, secondsElapsed);
     }
 
-  
 
 
-    return ( 
+
+    return (
         <tr id="itemus1" className={cl}>
             <td>{props.index}</td>
             <td>{val.userid.username}</td>
@@ -51,7 +50,7 @@ const Itemhoadonchoigame = (props) => {
             <td>{val.dateEnd}</td>
             <td>{val.cost}</td>
         </tr>
-    
+
     )
 }
 

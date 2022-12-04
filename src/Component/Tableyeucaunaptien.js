@@ -55,7 +55,7 @@ const Tableyeucaunaptien = (props) => {
 
         })
     }, [])
-
+    let index = 0
     return (<>
 
         <div className={classVisible} id="containerUser">
@@ -101,18 +101,22 @@ const Tableyeucaunaptien = (props) => {
                 </thead>
                 <tbody>
 
-                    {chose === 1 ?
-                        arrsoft.map((value, index) => {
-                            !value.val.trangThai && haveLoad++;
 
+
+                    {chose === 1 ?
+                        arrsoft.map((value) => {
+                            !value.val.trangThai && haveLoad++;
+                            !value.val.trangThai && index++;
 
                             return !value.val.trangThai && <Itemnaptienchuaxyly
                                 cl={(index >= pages - 10 && index < pages) ? "" : classVisi}
                                 index={index} value={value} key={index} />
                         })
                         :
-                        arrsoft.map((value, index) => {
+                        arrsoft.map((value) => {
                             value.val.trangThai && haveLoad++;
+                            value.val.trangThai && index++;
+
                             return value.val.trangThai && <Itemhoadonnaptiendaxylt
                                 cl={(index >= pages - 10 && index < pages) ? "" : classVisi}
                                 index={index} value={value} key={index} />

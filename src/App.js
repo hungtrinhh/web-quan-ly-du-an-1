@@ -5,6 +5,7 @@ import { TableHoadonchoigame } from "./Component/TableHoadonchoigame";
 import Loginform from "./Component/Loginform";
 import Tableyeucaunaptien from "./Component/Tableyeucaunaptien";
 import TableDoanhthu from "./Component/TableDoanhthu";
+import TableHoadonhengio from "./Component/TableHoadonhengio";
 
 
 function App() {
@@ -32,17 +33,20 @@ function App() {
               <p onClick={(e) => {
                 setchose(3);
               }} className={chose == 3 ? classp : ''} >Danh sách yêu cầu nạp tiền</p>
-               <p onClick={(e) => {
+              <p onClick={(e) => {
                 setchose(4);
               }} className={chose == 4 ? classp : ''} >Doanh thu các trò chơi</p>
+              <p onClick={(e) => {
+                setchose(5);
+              }} className={chose == 5 ? classp : ''} >Hoá đơn đặt thời gian chơi</p>
             </div>
-           
+
 
             <Table key={"tableUser"} cl={chose == 1 ? "" : classVisible} />
-            <TableHoadonchoigame cl={chose == 2 ? "" : classVisible}  />
-            <Tableyeucaunaptien cl={chose == 3 ? "" : classVisible}  />
-            <TableDoanhthu  cl={chose == 4 ? "" : classVisible} />
-             
+            <TableHoadonchoigame cl={chose == 2 ? "" : classVisible} />
+            <Tableyeucaunaptien cl={chose == 3 ? "" : classVisible} />
+            <TableDoanhthu cl={chose == 4 ? "" : classVisible} />
+            <TableHoadonhengio cl={chose == 5 ? "" : classVisible} />
           </>
           : <>
             <Loginform setisLogin={setisLogin} />
