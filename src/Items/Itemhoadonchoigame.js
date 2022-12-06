@@ -19,24 +19,43 @@ const Itemhoadonchoigame = (props) => {
     const cl = props.cl
 
 
-    var dateObject = moment(val.dateEnd, "DD/MM/YYYY hh:mm:ss");
-    dateObject = dateObject.toDate();
-    var db = getDatabase(app);
-    var start = new Date();
-
-    var secondsElapsed = dateObject - start;
-    if (!val.success) {
-        console.log("Đã set giờ tắt trong :" + secondsElapsed);
-        setTimeout(() => {
-            update(ref(db, `/Game/${val.gameid.id}`), {
-                trangThai: "Đang hoạt động"
-
-            })
-            update(ref(db, val.id), {
-                success: true
-            })
-        }, secondsElapsed);
+    if (val.userid == undefined || val.userid == null) {
+        val.userid = {
+            username: 'User đã bị xoá'
+        }
     }
+
+    useEffect(() => {
+        if (val.userid.username == undefined || val.userid.username == null) {
+
+        } else {
+
+            var dateObject = moment(val.dateEnd, "DD/MM/YYYY hh:mm:ss");
+            dateObject = dateObject.toDate();
+            var db = getDatabase(app);
+            var start = new Date();
+
+            var secondsElapsed = dateObject - start;
+            if (!val.success) {
+                console.log("Đã set giờ tắt trong :" + secondsElapsed);
+                var timeout = setTimeout(() => {
+                    update(ref(db, `/Game/${val.gameid.id}`), {
+                        trangThai: "Đang hoạt động"
+
+                    })
+                    update(ref(db, val.id), {
+                        success: true
+                    })
+                }, secondsElapsed);
+            }
+            return () => {
+                clearTimeout(timeout);
+            }
+        }
+    }, [])
+
+
+
 
 
 

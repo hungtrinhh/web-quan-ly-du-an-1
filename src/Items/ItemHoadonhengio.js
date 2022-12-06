@@ -7,10 +7,12 @@ const ItemHoadonhengio = (props) => {
 
     const { index, val, cl } = props;
 
+
+
     useEffect(() => {
         var db = getDatabase(app)
 
-        if (!val.success) {
+        if (!val.userId) {
 
             var db = getDatabase(app);
             var dateObject = moment(val.timeStart + ':00', "DD/MM/YYYY hh:mm:ss");
@@ -23,34 +25,41 @@ const ItemHoadonhengio = (props) => {
 
 
             var timeout = setTimeout(() => {
-               
-                update(ref(db, `HoaDonHenGio/${val.id}`), {
-                    success: true
 
-                })
-                push(ref(db, 'Hoadonchoigame/' + reftoday), {
-                    cost: val.cost,
-                    dateEnd: val.timeEnd + ':00',
-                    dateStart: val.timeStart + ':00',
-                    gameid: val.gameid.id + "",
-                    success: false,
-                    userid: val.userId.id,
+                if (val.userId != undefined || val.userId != null) {
+                    update(ref(db, `HoaDonHenGio/${val.id}`), {
+                        success: true
 
-                })
+                    })
+                    push(ref(db, 'Hoadonchoigame/' + reftoday), {
+                        cost: val.cost,
+                        dateEnd: val.timeEnd + ':00',
+                        dateStart: val.timeStart + ':00',
+                        gameid: val.gameid.id + "",
+                        success: false,
+                        userid: val.userId.id,
 
-                update(ref(db, `Game/${val.gameid.id + ""}`), {
-                    trangThai: 'Đang được chơi'
+                    })
+
+                    update(ref(db, `Game/${val.gameid.id + ""}`), {
+                        trangThai: 'Đang được chơi'
 
 
-                })
+                    })
+                }
             }, secondsElapsed);
         }
+
+
         return () => clearTimeout(timeout);
     }, []);
 
 
-
-
+    if (!val.userId) {
+        val.userId = {
+            username: "User đã bị xoá"
+        }
+    }
 
     return (
         <tr id="itemus1" className={cl}>

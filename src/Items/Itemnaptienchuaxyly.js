@@ -7,11 +7,37 @@ import check from '../Image/check.png'
 
 import app from '../FireBase/FireBase';
 const Itemnaptienchuaxyly = (props) => {
-    const { value, index ,searchName,cl} = props;
+    var { value, index, searchName, cl } = props;
     const val = value.val;
 
-    const [User, setUser] = useState("")
-    var db = getDatabase(app);
+    const [db, setdb] = useState(getDatabase(app))
+    const [User, setUser] = useState(
+        {
+            name: "User đã bị xoá"
+        }
+    )
+
+
+
+    useEffect(() => {
+
+        if (val.userId == undefined || val.userId == null) {
+
+
+        } else {
+            onValue(ref(db, `Users/${val.userId}`), (dataSnapshot) => {
+
+                if (dataSnapshot.val() != null) {
+                    setUser(dataSnapshot.val())
+                } else {
+
+                }
+            })
+        }
+
+
+
+    }, [])
 
     const onTrush = (e) => {
         update(ref(db, `Users/${val.userId}`), {
@@ -21,28 +47,20 @@ const Itemnaptienchuaxyly = (props) => {
             trangThai: true
         })
 
-
-
     }
-    useEffect(() => {
-        var db = getDatabase(app);
-        onValue(ref(db, `Users/${val.userId}`), (dataSnapshot) => {
-            setUser(dataSnapshot.val())
-        })
 
 
-    }, [])
 
 
-    
+
     return (
-     
-        <tr id="itemus1" className={cl}>
+
+        <tr id="itemus1" className={User.name == "User đã bị xoá" ? "visibiliti":cl}>
             <td>{index}</td>
             <td>{User.name}</td>
             <td>{val.date}</td>
             <td>{val.cost}</td>
-            <td onClick={onTrush}><img src={check}></img> </td>
+            <td onClick={onTrush}><img src={check}></img></td>
 
 
         </tr>
