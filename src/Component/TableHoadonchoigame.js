@@ -82,35 +82,34 @@ export const TableHoadonchoigame = (props) => {
         })
 
     }, [])
- 
 
     if (User.length > 0 && Game.length > 0 && ListHoadon.length > 0) {
         let arr = ListHoadon;
         arr.map((a, index) => {
 
-            if(typeof (a.gameid) == 'object'){
-               
-            }else{
+            if (typeof (a.gameid) == 'object') {
+
+            } else {
                 let game = Game.find((u) => {
-              
+
 
                     return u.id == a.gameid;
                 })
-            a.gameid = game;
+                a.gameid = game;
 
             }
-            if(typeof (a.userid) == 'object'){
-            
-            }else{
+            if (typeof (a.userid) == 'object') {
+
+            } else {
                 let users = user.find((u) => {
-               
+
                     return u.id == a.userid;
                 })
                 a.userid = users;
             }
-           
-       
-           
+
+
+
 
         })
     }

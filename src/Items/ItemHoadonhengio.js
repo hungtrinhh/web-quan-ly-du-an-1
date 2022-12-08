@@ -9,10 +9,10 @@ const ItemHoadonhengio = (props) => {
 
 
 
-    useEffect(() => {
+
         var db = getDatabase(app)
 
-        if (!val.userId) {
+        if (val.userId) {
 
             var db = getDatabase(app);
             var dateObject = moment(val.timeStart + ':00', "DD/MM/YYYY hh:mm:ss");
@@ -22,9 +22,7 @@ const ItemHoadonhengio = (props) => {
             var reftoday = `${date.getFullYear()}/${date.getMonth() + 1}`
 
             console.log('Đã set giờ bật máy :' + secondsElapsed);
-
-
-            var timeout = setTimeout(() => {
+             setTimeout(() => {
 
                 if (val.userId != undefined || val.userId != null) {
                     update(ref(db, `HoaDonHenGio/${val.id}`), {
@@ -51,8 +49,8 @@ const ItemHoadonhengio = (props) => {
         }
 
 
-        return () => clearTimeout(timeout);
-    }, []);
+
+   
 
 
     if (!val.userId) {
